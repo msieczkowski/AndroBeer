@@ -1,12 +1,16 @@
 package com.example.lp.beer;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -20,6 +24,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 public class MainActivity extends AppCompatActivity {
 
    // EditText etGitHubUser; // This will be a reference to our GitHub username input.
@@ -29,20 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
     String baseUrl = "http://192.168.240.4:3000/beer/";  // This is the API base URL (GitHub API)
     String url;  // This will hold the full URL which will include the username entered in the etGitHubUser.
-
+    private List<Beer> beers = new ArrayList<Beer>();
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);  // This is some magic for Android to load a previously saved state for when you are switching between actvities.
         setContentView(R.layout.activity_main);  // This links our code to our layout which we defined earlier.
-
-        //this.etGitHubUser = (EditText) findViewById(R.id.et_github_user);  // Link our github user text box.
-        //this.btnGetRepos = (Button) findViewById(R.id.btn_get_repos);  // Link our clicky button.
-        this.tvRepoList = (TextView) findViewById(R.id.tv_repo_list);  // Link our repository list text output box.
-        this.tvRepoList.setMovementMethod(new ScrollingMovementMethod());  // This makes our text box scrollable, for those big GitHub contributors with lots of repos :)
-
+        mListView = (ListView) findViewById(R.id.listView);
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
         this.getRepoList();
+
+
+        BeerAdapter adapter = new BeerAdapter(MainActivity.this, this.beers);
+        mListView.setAdapter(adapter);
+        //this.etGitHubUser = (EditText) findViewById(R.id.et_github_user);  // Link our github user text box.
+        //this.btnGetRepos = (Button) findViewById(R.id.btn_get_repos);  // Link our clicky button.
+        //this.tvRepoList = (TextView) findViewById(R.id.tv_repo_list);  // Link our repository list text output box.
+        //this.tvRepoList.setMovementMethod(new ScrollingMovementMethod());  // This makes our text box scrollable, for those big GitHub contributors with lots of repos :)
+
+
     }
 
     private void clearRepoList() {
@@ -80,14 +96,21 @@ public class MainActivity extends AppCompatActivity {
                         // Check the length of our response (to see if the user has any repos)
                         if (response.length() > 0) {
                             // The user does have repos, so let's loop through them all.
+
                             for (int i = 0; i < response.length(); i++) {
                                 try {
                                     // For each repo, add a new line to our repo list.
                                     JSONObject jsonObj = response.getJSONObject(i);
+                                    String Id = jsonObj.get("_id").toString();
                                     String Name = jsonObj.get("name").toString();
+                                    String Degree = jsonObj.get("degree").toString();
+                                    String Description = jsonObj.get("description").toString();
+                                    String Origin = jsonObj.get("origin").toString();
                                     String Price = jsonObj.get("price").toString();
-
-                                    addToRepoList(Name, Price);
+                                    String Type = jsonObj.get("type").toString();
+                                    Beer aBeer = new Beer(Id, Name, Degree, Description, Origin, Price, Type);
+                                    addBeerToList(aBeer);
+                                    //addToRepoList(Name, Price);
                                 } catch (JSONException e) {
                                     // If there is an error then output this to the logs.
                                     Log.e("Volley", "Invalid JSON Object.");
@@ -114,5 +137,10 @@ public class MainActivity extends AppCompatActivity {
         // Add the request we just defined to our request queue.
         // The request queue will automatically handle the request as soon as it can.
         requestQueue.add(arrReq);
+    }
+
+    public void addBeerToList(Beer aBeer)
+    {
+        this.beers.add(aBeer);
     }
 }
