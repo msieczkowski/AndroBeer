@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
                                     String Origin = jsonObj.get("origin").toString();
                                     String Price = jsonObj.get("price").toString();
                                     String Type = jsonObj.get("type").toString();
-                                    Beer aBeer = new Beer(Id, Name, Degree, Description, Origin, Price, Type);
+                                    String ImgUrl = jsonObj.get("img_url").toString();
+                                    Beer aBeer = new Beer(Id, Name, Degree, Description, Origin, Price, Type, ImgUrl);
                                     addBeerToList(aBeer);
                                     //addToRepoList(Name, Price);
                                 } catch (JSONException e) {

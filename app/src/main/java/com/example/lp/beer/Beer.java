@@ -12,8 +12,9 @@ public class Beer {
     private String origin;
     private String price;
     private String type;
+    private String imgUrl;
 
-    public Beer(String id, String name, String degree, String description, String origin, String price, String type) {
+    public Beer(String id, String name, String degree, String description, String origin, String price, String type, String imgUrl) {
         this.id = id;
         this.name = name;
         this.degree = degree;
@@ -21,6 +22,7 @@ public class Beer {
         this.origin = origin;
         this.price = price;
         this.type = type;
+        this.imgUrl = imgUrl;
     }
 
     public String getId() {
@@ -77,5 +79,13 @@ public class Beer {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
