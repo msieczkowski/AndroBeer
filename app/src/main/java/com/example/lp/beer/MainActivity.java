@@ -1,6 +1,7 @@
 package com.example.lp.beer;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -54,6 +56,23 @@ public class MainActivity extends AppCompatActivity {
 
         BeerAdapter adapter = new BeerAdapter(MainActivity.this, this.beers);
         mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Beer beer = (Beer) mListView.getItemAtPosition(position);
+                Intent intent = new Intent(MainActivity.this, BeerDetailsActivity.class);
+
+//                TextView textViewBeerId = row.findViewById(R.id.textViewBeerId);
+//                String beerId = (String)textViewBeerId.getText();
+//
+//                Intent intent = new Intent(MainActivity.this, BeerDetailsActivity.class);
+//
+                intent.putExtra(EXTRA_MESSAGE, beer.getId());
+                startActivity(intent);
+
+            }
+        });
         //this.etGitHubUser = (EditText) findViewById(R.id.et_github_user);  // Link our github user text box.
         //this.btnGetRepos = (Button) findViewById(R.id.btn_get_repos);  // Link our clicky button.
         //this.tvRepoList = (TextView) findViewById(R.id.tv_repo_list);  // Link our repository list text output box.
@@ -145,13 +164,5 @@ public class MainActivity extends AppCompatActivity {
     {
         this.beers.add(aBeer);
     }
-    /** Called when user click on row */
-    public void viewOneBeer(View view)
-    {
-        Intent intent = new Intent(this, BeerDetailsActivity.class);
-        /** DONNER ID */
-        String id = "5a69b51afcc13c1f40f52f23";
-        intent.putExtra(EXTRA_MESSAGE, id);
-        startActivity(intent);
-    }
+
 }

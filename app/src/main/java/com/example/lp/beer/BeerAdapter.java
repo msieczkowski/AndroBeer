@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,9 +20,12 @@ import java.util.List;
 
 public class BeerAdapter extends ArrayAdapter<Beer> {
 
+
+
     public BeerAdapter(Context context, List<Beer> beers) {
         super(context, 0, beers);
     }
+
 
     //convertView est notre vue recyclée
     @Override
@@ -41,6 +45,7 @@ public class BeerAdapter extends ArrayAdapter<Beer> {
             viewHolder.name = (TextView) convertView.findViewById(R.id.name);
             viewHolder.price = (TextView) convertView.findViewById(R.id.price);
             viewHolder.imgUrl = (ImageView) convertView.findViewById(R.id.image);
+            viewHolder.beerId = (TextView) convertView.findViewById(R.id.textViewBeerId);
             convertView.setTag(viewHolder);
         }
 
@@ -50,16 +55,19 @@ public class BeerAdapter extends ArrayAdapter<Beer> {
         //il ne reste plus qu'à remplir notre vue
         viewHolder.name.setText(beer.getName());
         viewHolder.price.setText(beer.getPrice()+" €");
+        viewHolder.beerId.setText(beer.getId());
         Picasso.with(getContext()).load(beer.getImgUrl()).into(viewHolder.imgUrl);
 
         //nous renvoyons notre vue à l'adapter, afin qu'il l'affiche
         //et qu'il puisse la mettre à recycler lorsqu'elle sera sortie de l'écran
         return convertView;
+
     }
 
     private class BeerViewHolder{
         public TextView name;
         public TextView price;
         public ImageView imgUrl;
+        public TextView beerId;
     }
 }

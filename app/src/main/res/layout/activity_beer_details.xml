@@ -8,101 +8,110 @@
     tools:layout_editor_absoluteY="81dp">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
+        android:id="@+id/imageBeer"
+        android:layout_width="306dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@color/colorAccent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonUpdate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="39dp"
-        android:text="Button"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button2"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="Éditer"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonDelete"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
+        app:layout_constraintStart_toStartOf="@+id/textViewTitle" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonDelete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="201dp"
         android:layout_marginEnd="39dp"
-        android:text="Button"
+        android:layout_marginStart="40dp"
+        android:text="Supprimer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="@+id/textViewType" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonUpdate" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="11dp"
+        android:text="TextView"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/textViewDescription"
+        app:layout_constraintStart_toEndOf="@+id/textViewTitle" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
         android:layout_width="0dp"
         android:layout_height="77dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginBottom="34dp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewOrigin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewOrigin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="39dp"
+        android:layout_marginBottom="38dp"
         android:layout_marginStart="2dp"
         android:text="TextView"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="@+id/textViewDescription" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewDegree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:text="TextView"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="39dp"
         android:layout_marginTop="14dp"
         android:text="TextView"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
 </android.support.constraint.ConstraintLayout>
