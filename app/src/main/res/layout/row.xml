@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="10dp" >
-    <ImageView android:id="@+id/image" android:layout_width="75dp" android:layout_height="75dp" tools:background="#AAA" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="viewOneBeer"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:cropToPadding="false"
+        tools:background="#AAA" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/image"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_toEndOf="@+id/image"
+        android:layout_toStartOf="@+id/price"
         android:textColor="@android:color/black"
         android:textSize="19sp"
         android:textStyle="bold"
-        tools:text="Nom de la bière"
-        android:layout_alignParentTop="true"
-        android:layout_alignBottom="@+id/image"
-        android:layout_toStartOf="@+id/price"
-        android:layout_toEndOf="@+id/image"/>
+        tools:text="Nom de la bière" />
 
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        tools:text="Price"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        tools:text="Price" />
 
 </RelativeLayout>

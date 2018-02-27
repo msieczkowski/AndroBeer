@@ -1,5 +1,6 @@
 package com.example.lp.beer;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +32,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String EXTRA_MESSAGE = "com.example.lp.beer.BeerDetails";
    // EditText etGitHubUser; // This will be a reference to our GitHub username input.
     //Button btnGetRepos;  // This is a reference to the "Get Repos" button.
     TextView tvRepoList;  // This will reference our repo list text box.
@@ -143,5 +144,14 @@ public class MainActivity extends AppCompatActivity {
     public void addBeerToList(Beer aBeer)
     {
         this.beers.add(aBeer);
+    }
+    /** Called when user click on row */
+    public void viewOneBeer(View view)
+    {
+        Intent intent = new Intent(this, BeerDetailsActivity.class);
+        /** DONNER ID */
+        String id = "5a69b51afcc13c1f40f52f23";
+        intent.putExtra(EXTRA_MESSAGE, id);
+        startActivity(intent);
     }
 }
