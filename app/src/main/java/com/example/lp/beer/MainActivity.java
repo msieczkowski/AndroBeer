@@ -1,18 +1,11 @@
 package com.example.lp.beer;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,16 +21,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.lp.beer.BeerDetails";
    // EditText etGitHubUser; // This will be a reference to our GitHub username input.
     //Button btnGetRepos;  // This is a reference to the "Get Repos" button.
-    TextView tvRepoList;  // This will reference our repo list text box.
+    TextView tvBeerEmpty;  // This will reference our repo list text box.
     RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
 
     String baseUrl = "http://192.168.240.4:3000/beer/";  // This is the API base URL (GitHub API)
@@ -50,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);  // This is some magic for Android to load a previously saved state for when you are switching between actvities.
         setContentView(R.layout.activity_main);  // This links our code to our layout which we defined earlier.
         mListView = (ListView) findViewById(R.id.listView);
+        tvBeerEmpty = (TextView) findViewById(R.id.beerEmpty);
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
         this.getRepoList();
 
@@ -68,24 +59,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void clearRepoList() {
-        // This will clear the repo list (set it as a blank string).
-        this.tvRepoList.setText("");
-    }
-
-    private void addToRepoList(String Name, String Price) {
-        // This will add a new repo to our list.
-        // It combines the repoName and lastUpdated strings together.
-        // And then adds them followed by a new line (\n\n make two new lines).
-        String strRow = Name + " / " + Price + " €";
-        String currentText = tvRepoList.getText().toString();
-        this.tvRepoList.setText(currentText + "\n\n" + strRow);
-    }
-
     private void setRepoListText(String str) {
         // This is used for setting the text of our repo list box to a specific string.
         // We will use this to write a "No repos found" message if the user doens't have any.
-        this.tvRepoList.setText(str);
+        this.tvBeerEmpty.setText(str);
     }
 
     private void getRepoList() {
@@ -127,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         } else {
                             // The user didn't have any repos.
-                            setRepoListText("No repos found.");
+                            setRepoListText("Il n'y a pas de bière à afficher :(");
                         }
 
                     }
