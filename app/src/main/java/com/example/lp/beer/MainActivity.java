@@ -129,4 +129,8 @@ public class MainActivity extends AppCompatActivity {
         this.beers.add(aBeer);
     }
 
+    public void addBeerActivity(View view){
+        final Intent intent = new Intent(MainActivity.this, AddBeerActivity.class);
+        startActivity(intent);
+    }
 }
