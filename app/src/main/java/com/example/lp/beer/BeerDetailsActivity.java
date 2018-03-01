@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,9 +14,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 import android.content.Context;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +28,7 @@ import org.json.JSONObject;
 import java.util.jar.Attributes;
 
 public class BeerDetailsActivity extends AppCompatActivity {
-
+    private Beer beer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +71,7 @@ public class BeerDetailsActivity extends AppCompatActivity {
                                     String Type = jsonObj.get("type").toString();
                                     String ImgUrl = jsonObj.get("img_url").toString();
                                     Beer aBeer = new Beer(Id, Name, Degree, Description, Origin, Price, Type, ImgUrl);
-
+                                    beer = aBeer;
                                     BeerTitle.setText(aBeer.getName());
                                     BeerType.setText(aBeer.getType());
                                     BeerDescription.setText(aBeer.getDescription());
@@ -106,4 +112,35 @@ public class BeerDetailsActivity extends AppCompatActivity {
 
 
     }
+
+    public void deleteBeer(View view){
+        final Intent intent = new Intent(BeerDetailsActivity.this, MainActivity.class);
+        String id = beer.getId();
+        String requestUrl = "http://192.168.240.4:3000/beer/";
+        requestUrl += id;
+        RequestQueue requestQueue;
+        requestQueue = Volley.newRequestQueue(this);
+
+        StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, requestUrl,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response);
+                        startActivity(intent);
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error.
+                        Log.d("error", "erreur");
+                    }
+                }
+        );
+        requestQueue.add(deleteRequest);
+    }
+
 }

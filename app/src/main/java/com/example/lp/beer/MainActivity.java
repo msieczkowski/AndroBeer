@@ -62,23 +62,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Beer beer = (Beer) mListView.getItemAtPosition(position);
                 Intent intent = new Intent(MainActivity.this, BeerDetailsActivity.class);
-
-//                TextView textViewBeerId = row.findViewById(R.id.textViewBeerId);
-//                String beerId = (String)textViewBeerId.getText();
-//
-//                Intent intent = new Intent(MainActivity.this, BeerDetailsActivity.class);
-//
                 intent.putExtra(EXTRA_MESSAGE, beer.getId());
                 startActivity(intent);
-
             }
         });
-        //this.etGitHubUser = (EditText) findViewById(R.id.et_github_user);  // Link our github user text box.
-        //this.btnGetRepos = (Button) findViewById(R.id.btn_get_repos);  // Link our clicky button.
-        //this.tvRepoList = (TextView) findViewById(R.id.tv_repo_list);  // Link our repository list text output box.
-        //this.tvRepoList.setMovementMethod(new ScrollingMovementMethod());  // This makes our text box scrollable, for those big GitHub contributors with lots of repos :)
-
-
     }
 
     private void clearRepoList() {
