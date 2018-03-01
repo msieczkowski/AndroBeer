@@ -29,6 +29,7 @@ import java.util.jar.Attributes;
 
 public class BeerDetailsActivity extends AppCompatActivity {
     private Beer beer;
+    public static final String EXTRA_MESSAGE = "com.example.lp.beer.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,6 +142,13 @@ public class BeerDetailsActivity extends AppCompatActivity {
                 }
         );
         requestQueue.add(deleteRequest);
+    }
+
+    public void editBeer(View view){
+        Intent intent = new Intent(BeerDetailsActivity.this, EditBeerActivity.class);
+        String id = beer.getId();
+        intent.putExtra(EXTRA_MESSAGE, id);
+        startActivity(intent);
     }
 
 }
