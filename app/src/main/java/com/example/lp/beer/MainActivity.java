@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvBeerEmpty;  // This will reference our repo list text box.
     RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
 
-    String baseUrl = "http://192.168.240.4:3000/beer/";  // This is the API base URL (GitHub API)
+    String baseUrl = "http://andro-beer.jsant.fr/beer/";  // This is the API base URL (GitHub API)
     String url;  // This will hold the full URL which will include the username entered in the etGitHubUser.
     private List<Beer> beers = new ArrayList<Beer>();
     private ListView mListView;

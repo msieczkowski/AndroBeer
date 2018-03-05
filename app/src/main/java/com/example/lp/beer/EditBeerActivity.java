@@ -33,7 +33,7 @@ public class EditBeerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String beerId  = intent.getStringExtra(BeerDetailsActivity.EXTRA_MESSAGE);
         beer = beerId;
-        String requestUrl = "http://192.168.240.4:3000/beer/";
+        String requestUrl = "http://andro-beer.jsant.fr/beer/";
         requestUrl +=  beerId;
 
         final EditText BeerNameField = (EditText) findViewById(R.id.editTextName);
@@ -127,7 +127,7 @@ public class EditBeerActivity extends AppCompatActivity {
         final String BeerDegree = BeerDegreeField.getText().toString();
         final String BeerImgUrl = BeerImgUrlField.getText().toString();
 
-        String requestUrl = "http://192.168.240.4:3000/beer/";
+        String requestUrl = "http://andro-beer.jsant.fr/beer/";
         requestUrl += beer;
         final Intent intent =  new Intent(EditBeerActivity.this, MainActivity.class);
         StringRequest putRequest = new StringRequest(Request.Method.PUT, requestUrl,

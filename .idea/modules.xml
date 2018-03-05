@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroBeer.iml" filepath="$PROJECT_DIR$/AndroBeer.iml" />
-      <module fileurl="file://C:\Users\lp\Desktop\AndroBeer\Beer.iml" filepath="C:\Users\lp\Desktop\AndroBeer\Beer.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/AndroBeer/Beer.iml" filepath="$USER_HOME$/Desktop/AndroBeer/Beer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

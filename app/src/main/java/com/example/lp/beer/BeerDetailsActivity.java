@@ -48,7 +48,7 @@ public class BeerDetailsActivity extends AppCompatActivity {
         final ImageView imgUrl = (ImageView)findViewById(R.id.imageBeer);
 
 
-        String requestUrl = "http://192.168.240.4:3000/beer/";
+        String requestUrl = "http://andro-beer.jsant.fr/beer/";
         requestUrl +=  beerId;
 
         JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.GET, requestUrl,
@@ -117,7 +117,7 @@ public class BeerDetailsActivity extends AppCompatActivity {
     public void deleteBeer(View view){
         final Intent intent = new Intent(BeerDetailsActivity.this, MainActivity.class);
         String id = beer.getId();
-        String requestUrl = "http://192.168.240.4:3000/beer/";
+        String requestUrl = "http://andro-beer.jsant.fr/beer/";
         requestUrl += id;
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);

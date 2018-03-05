@@ -52,7 +52,7 @@ public class AddBeerActivity extends AppCompatActivity {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);
 
-        String requestUrl = "http://192.168.240.4:3000/beer/";
+        String requestUrl = "http://andro-beer.jsant.fr/beer/";
         StringRequest postRequest = new StringRequest(Request.Method.POST, requestUrl,
                 new Response.Listener<String>()
                 {
