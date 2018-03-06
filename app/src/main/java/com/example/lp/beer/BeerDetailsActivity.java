@@ -27,6 +27,8 @@ import org.json.JSONObject;
 
 import java.util.jar.Attributes;
 
+import static com.example.lp.beer.MainActivity.API_BASEURL;
+
 public class BeerDetailsActivity extends AppCompatActivity {
     private Beer beer;
     public static final String EXTRA_MESSAGE = "com.example.lp.beer.MESSAGE";
@@ -48,7 +50,7 @@ public class BeerDetailsActivity extends AppCompatActivity {
         final ImageView imgUrl = (ImageView)findViewById(R.id.imageBeer);
 
 
-        String requestUrl = "http://andro-beer.jsant.fr/beer/";
+        String requestUrl = API_BASEURL;
         requestUrl +=  beerId;
 
         JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.GET, requestUrl,
@@ -117,7 +119,7 @@ public class BeerDetailsActivity extends AppCompatActivity {
     public void deleteBeer(View view){
         final Intent intent = new Intent(BeerDetailsActivity.this, MainActivity.class);
         String id = beer.getId();
-        String requestUrl = "http://andro-beer.jsant.fr/beer/";
+        String requestUrl = API_BASEURL;
         requestUrl += id;
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);

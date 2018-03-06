@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvBeerEmpty;  // This will reference our repo list text box.
     RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
 
-    String baseUrl = "http://andro-beer.jsant.fr/beer/";  // This is the API base URL (GitHub API)
+    public static final String API_BASEURL = "http://andro-beer.jsant.fr/beer/";  // This is the API base URL (GitHub API)
     String url;  // This will hold the full URL which will include the username entered in the etGitHubUser.
     private List<Beer> beers = new ArrayList<Beer>();
     private ListView mListView;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void getRepoList() {
         // First, we insert the username into the repo url.
         // The repo url is defined in GitHubs API docs (https://developer.github.com/v3/repos/).
-        this.url = this.baseUrl;
+        this.url = API_BASEURL;
 
         // Next, we create a new JsonArrayRequest. This will use Volley to make a HTTP request
         // that expects a JSON Array Response.

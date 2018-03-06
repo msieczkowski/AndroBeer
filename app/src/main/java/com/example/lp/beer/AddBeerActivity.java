@@ -17,6 +17,8 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.lp.beer.MainActivity.API_BASEURL;
+
 public class AddBeerActivity extends AppCompatActivity {
 
     @Override
@@ -52,7 +54,7 @@ public class AddBeerActivity extends AppCompatActivity {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);
 
-        String requestUrl = "http://andro-beer.jsant.fr/beer/";
+        String requestUrl = API_BASEURL;
         StringRequest postRequest = new StringRequest(Request.Method.POST, requestUrl,
                 new Response.Listener<String>()
                 {

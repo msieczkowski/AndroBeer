@@ -23,6 +23,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.lp.beer.MainActivity.API_BASEURL;
+
 public class EditBeerActivity extends AppCompatActivity {
     private String beer;
     @Override
@@ -33,7 +35,7 @@ public class EditBeerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String beerId  = intent.getStringExtra(BeerDetailsActivity.EXTRA_MESSAGE);
         beer = beerId;
-        String requestUrl = "http://andro-beer.jsant.fr/beer/";
+        String requestUrl = API_BASEURL;
         requestUrl +=  beerId;
 
         final EditText BeerNameField = (EditText) findViewById(R.id.editTextName);
@@ -127,7 +129,7 @@ public class EditBeerActivity extends AppCompatActivity {
         final String BeerDegree = BeerDegreeField.getText().toString();
         final String BeerImgUrl = BeerImgUrlField.getText().toString();
 
-        String requestUrl = "http://andro-beer.jsant.fr/beer/";
+        String requestUrl = API_BASEURL;
         requestUrl += beer;
         final Intent intent =  new Intent(EditBeerActivity.this, MainActivity.class);
         StringRequest putRequest = new StringRequest(Request.Method.PUT, requestUrl,
