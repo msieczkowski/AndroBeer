@@ -1,6 +1,9 @@
 package com.example.lp.beer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);  // This links our code to our layout which we defined earlier.
         mListView = (ListView) findViewById(R.id.listView);
         tvBeerEmpty = (TextView) findViewById(R.id.beerEmpty);
+
+        if(!isConnectingToInternet(MainActivity.this))
+        {
+            Toast.makeText(getApplicationContext(),"Veuillez vérifier votre connexion à internet", Toast.LENGTH_LONG).show();
+        }
+
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
         this.getRepoList();
 
@@ -114,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // If there a HTTP error then add a note to our repo list.
-                        setRepoListText("Error while calling REST API");
+                        setRepoListText("Veuillez vous connecter à internet pour lister les bières");
                         Log.e("Volley", error.toString());
                     }
                 }
@@ -132,5 +142,23 @@ public class MainActivity extends AppCompatActivity {
     public void addBeerActivity(View view){
         final Intent intent = new Intent(MainActivity.this, AddBeerActivity.class);
         startActivity(intent);
+    }
+
+    public static boolean isConnectingToInternet(Context context)
+    {
+        ConnectivityManager connectivity =
+                (ConnectivityManager) context.getSystemService(
+                        Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null)
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+        }
+        return false;
     }
 }
